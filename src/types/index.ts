@@ -12,6 +12,8 @@ export interface DetectionObject {
 export type PredictionScores = number[];
 export type PredictionBoxes = [number, number, number, number][];
 
+export type OnDetectionEvent = (data: DetectionObject) => void;
+
 export type DetectionTarget =
   | HTMLVideoElement
   | ImageData

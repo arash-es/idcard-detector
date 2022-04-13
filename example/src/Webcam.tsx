@@ -2,7 +2,7 @@ import { GraphModel } from '@tensorflow/tfjs-converter';
 import { FunctionComponent, useEffect, useRef, useState } from 'react';
 import SmartCamera from './components/SmartCamera/container/SmartCamera';
 import { SmartCameraHandler } from './components/SmartCamera/types';
-import { realtimeDetection } from '../../.';
+import { RealtimeDetectionEngine } from '../../.';
 import { DetectionObject } from '../../dist/types';
 
 interface IProps {
@@ -16,8 +16,13 @@ const Webcam: FunctionComponent<IProps> = ({ tfModel }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const webcamRef = useRef<SmartCameraHandler>(null);
   useEffect(() => {
-    console.log(tfModel);
-    realtimeDetection(tfModel, webcamRef.current?.video)(console.log);
+    if (webcamRef.current?.video) {
+      const engine = new RealtimeDetectionEngine(
+        tfModel,
+        webcamRef.current?.video
+      );
+      engine.start(console.log);
+    }
   }, []);
   return (
     <div className="w-144 h-108 rounded-2xl overflow-hidden relative">
