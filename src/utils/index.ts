@@ -4,10 +4,10 @@ import * as tf from '@tensorflow/tfjs';
 import {
   Model,
   DetectionObject,
-  Video,
   DetectionTarget,
   PredictionBoxes,
   PredictionScores,
+  OnDetectionEvent,
 } from '../types/index';
 import { OnProgressCallback } from '@tensorflow/tfjs-core/dist/io/types';
 
@@ -38,15 +38,32 @@ export const detect = async (model: GraphModel, target: DetectionTarget) => {
   }
 };
 
-export const realtimeDetection = (model: Model, videoElement: Video) => {
-  async function runDetection(onDetect: (data: DetectionObject) => void) {
-    if (model && videoElement && videoElement.readyState === 4) {
-      onDetect(await detect(model, videoElement));
-    }
-    requestAnimationFrame(() => runDetection(onDetect));
+export class RealtimeDetectionEngine {
+  private shouldStop: boolean;
+  constructor(private model: Model, private video: HTMLVideoElement) {
+    this.shouldStop = true;
   }
-  return runDetection;
-};
+
+  start(onDetect: OnDetectionEvent) {
+    if (this.shouldStop === false) {
+      return;
+    }
+    this.shouldStop = false;
+    const runDetection = async () => {
+      if (this.model && this.video?.readyState === 4) {
+        onDetect(await detect(this.model, this.video));
+      }
+      if (!this.shouldStop) {
+        requestAnimationFrame(runDetection);
+      }
+    };
+    runDetection();
+  }
+
+  stop() {
+    this.shouldStop = true;
+  }
+}
 
 export const loadModel = async (
   path: string,

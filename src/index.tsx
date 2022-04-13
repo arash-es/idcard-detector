@@ -1,10 +1,4 @@
-import { detect, loadModel, realtimeDetection } from './utils';
-import { useLoadModel, useRealtimeDetection } from './hooks';
+import { detect, loadModel, RealtimeDetectionEngine } from './utils';
+import { useLoadModel } from './hooks';
 
-export {
-  detect,
-  loadModel,
-  realtimeDetection,
-  useLoadModel,
-  useRealtimeDetection,
-};
+export { detect, loadModel, RealtimeDetectionEngine, useLoadModel };

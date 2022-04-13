@@ -1,7 +1,6 @@
 import { GraphModel } from '@tensorflow/tfjs-converter';
-import { useEffect, useState } from 'react';
-import { DetectionObject, Model } from '../types';
-import { loadModel as modelLoader, realtimeDetection } from '../utils';
+import { useState } from 'react';
+import { loadModel as modelLoader } from '../utils';
 
 export const useLoadModel = (modelPath: string) => {
   const [isLoading, setLoading] = useState(false);
@@ -29,19 +28,4 @@ export const useLoadModel = (modelPath: string) => {
     progress,
     model,
   };
-};
-
-export const useRealtimeDetection = (
-  model: Model,
-  videoElement: HTMLVideoElement | undefined
-) => {
-  const [detectionData, setDetectionData] = useState<DetectionObject | null>(
-    null
-  );
-  useEffect(() => {
-    if (model && videoElement) {
-      realtimeDetection(model, videoElement)(setDetectionData);
-    }
-  }, [model]);
-  return detectionData;
 };
