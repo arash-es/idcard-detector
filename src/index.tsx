@@ -1,6 +1,10 @@
-import * as React from 'react';
+import { detect, loadModel, realtimeDetection } from './utils';
+import { useLoadModel, useRealtimeDetection } from './hooks';
 
-// Delete me
-export const Thing = () => {
-  return <div>the snozzberries taste like snozzberries</div>;
+export {
+  detect,
+  loadModel,
+  realtimeDetection,
+  useLoadModel,
+  useRealtimeDetection,
 };
