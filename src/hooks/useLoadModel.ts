@@ -1,25 +1,18 @@
-import { Model } from '../types/index';
-import { GraphModel, loadGraphModel } from '@tensorflow/tfjs-converter';
+import { GraphModel } from '@tensorflow/tfjs-converter';
 import { useState } from 'react';
-
-let modelCache: Model = null;
+import { loadModel as modelLoader } from '../utils';
 
 const useLoadModel = (modelPath: string) => {
   const [isLoading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [model, setModel] = useState<GraphModel | null>(modelCache);
+  const [model, setModel] = useState<GraphModel | null>(null);
+
   const loadModel = async () => {
-    if (model) {
-      return Promise.resolve(model);
-    }
-    setLoading(true);
     try {
-      const model = await loadGraphModel(modelPath, {
-        onProgress: percentage => {
-          setProgress(percentage * 100);
-        },
+      setLoading(true);
+      const model = await modelLoader(modelPath, percentage => {
+        setProgress(percentage * 100);
       });
-      modelCache = model;
       setModel(model);
       return Promise.resolve(model);
     } catch (e) {
@@ -28,6 +21,7 @@ const useLoadModel = (modelPath: string) => {
       setLoading(false);
     }
   };
+
   return {
     loadModel,
     isLoading,
