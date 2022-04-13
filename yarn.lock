@@ -1684,12 +1684,12 @@
     "@types/webgl2" "0.0.6"
     seedrandom "2.4.3"
 
-"@tensorflow/tfjs-converter@3.15.0", "@tensorflow/tfjs-converter@^3.15.0":
+"@tensorflow/tfjs-converter@3.15.0", "@tensorflow/tfjs-converter@^3.11.0":
   version "3.15.0"
   resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-converter/-/tfjs-converter-3.15.0.tgz#7346932800fc6f8509dbd468504d617cec5aa282"
   integrity sha512-FBk3qGvNfS1xCw+ZLXCiD72vpR/rZaShFOY7HmLtTTfWlebWowrjaNqjvO8SKc7UGtRR/GJ7Bf3TgKyr9D3g0Q==
 
-"@tensorflow/tfjs-core@3.15.0", "@tensorflow/tfjs-core@^3.15.0":
+"@tensorflow/tfjs-core@3.15.0", "@tensorflow/tfjs-core@^3.11.0":
   version "3.15.0"
   resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-core/-/tfjs-core-3.15.0.tgz#1fc676be2aa591cd48a2dd8301a41bc1bf0f9b14"
   integrity sha512-X1XGr8rewm/n0RDMnaLRcRYsTHlQCqQUR5DCtjUf4TuII7kq/pkZ9xCKPPfS1qUd5jLy663h8j5cAyjJNUt/hw==
@@ -1715,7 +1715,7 @@
   resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-layers/-/tfjs-layers-3.15.0.tgz#9f71497f37d2b1b067bf8adaa1e562a85b22c7a9"
   integrity sha512-6MWTrRd+kK2rto/HXX0Gg9yGIkT0twvuzTHcxFHUJVlW3JYulRCp185h3AcBytyzqQeae5eA73aOovm3lBvN+A==
 
-"@tensorflow/tfjs@^3.15.0":
+"@tensorflow/tfjs@^3.11.0":
   version "3.15.0"
   resolved "https://registry.yarnpkg.com/@tensorflow/tfjs/-/tfjs-3.15.0.tgz#20692fd6a3d4284b6d1d9d50e22232fe7d1c015a"
   integrity sha512-sXcgD5hJsFsKlsBqSQYL21i27PtZ2V4fJLpKhGHXbNxvWq7B83UJuAzhc05x9hU6Ectnq4/41cMdTN/D+pe75Q==

@@ -8,7 +8,7 @@ import {
   DetectionTarget,
   PredictionBoxes,
   PredictionScores,
-} from './../types/index';
+} from '../types/index';
 import { OnProgressCallback } from '@tensorflow/tfjs-core/dist/io/types';
 
 let modelCache: Model = null;
@@ -53,6 +53,7 @@ export const loadModel = async (
   if (modelCache) {
     return Promise.resolve(modelCache);
   }
+  await tf.setBackend('webgl');
   try {
     const model = await loadGraphModel(path, {
       onProgress,

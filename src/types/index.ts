@@ -3,7 +3,7 @@ import { PixelData } from '@tensorflow/tfjs-core';
 
 export type Model = GraphModel | null;
 
-export type Video = HTMLVideoElement | undefined;
+export type Video = HTMLVideoElement | null | undefined;
 export interface DetectionObject {
   score: string;
   bbox: [number, number, number, number];
