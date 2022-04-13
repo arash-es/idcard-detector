@@ -16,6 +16,7 @@ const Webcam: FunctionComponent<IProps> = ({ tfModel }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const webcamRef = useRef<SmartCameraHandler>(null);
   useEffect(() => {
+    console.log(tfModel);
     realtimeDetection(tfModel, webcamRef.current?.video)(console.log);
   }, []);
   return (

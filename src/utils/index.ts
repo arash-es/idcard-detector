@@ -30,20 +30,22 @@ export const detect = async (model: GraphModel, target: DetectionTarget) => {
       bbox: ((await predictions[2].array()) as PredictionBoxes[])[0][0],
       score: `${((await predictions[3].array()) as PredictionScores[])[0][0]}`,
     };
-    tf.engine().endScope();
     return Promise.resolve(data);
   } catch (e) {
     return Promise.reject(e);
+  } finally {
+    tf.engine().endScope();
   }
 };
 
 export const realtimeDetection = (model: Model, videoElement: Video) => {
-  return function runDetection(onDetect: (data: DetectionObject) => void) {
+  async function runDetection(onDetect: (data: DetectionObject) => void) {
     if (model && videoElement && videoElement.readyState === 4) {
-      detect(model, videoElement).then(onDetect);
+      onDetect(await detect(model, videoElement));
     }
     requestAnimationFrame(() => runDetection(onDetect));
-  };
+  }
+  return runDetection;
 };
 
 export const loadModel = async (
