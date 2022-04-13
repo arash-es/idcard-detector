@@ -19,7 +19,7 @@ const Webcam: FunctionComponent<IProps> = ({ tfModel }) => {
     if (webcamRef.current?.video) {
       const engine = new RealtimeDetectionEngine(
         tfModel,
-        webcamRef.current?.video
+        webcamRef.current.video
       );
       engine.start(console.log);
     }
