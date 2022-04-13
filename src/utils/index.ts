@@ -40,7 +40,7 @@ export const detect = async (model: GraphModel, target: DetectionTarget) => {
 
 export class RealtimeDetectionEngine {
   private shouldStop: boolean;
-  constructor(private model: Model, private video: HTMLVideoElement) {
+  constructor(private model: GraphModel, private video: HTMLVideoElement) {
     this.shouldStop = true;
   }
 
