@@ -70,10 +70,6 @@ export class RealtimeDetectionEngine {
   stop() {
     this.shouldStop = true;
   }
-
-  dispose() {
-    tf.backend().dispose();
-  }
 }
 
 export const loadModel = async (

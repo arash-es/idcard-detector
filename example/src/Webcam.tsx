@@ -1,9 +1,7 @@
-import { GraphModel } from '@tensorflow/tfjs-converter';
 import { FunctionComponent, useEffect, useRef, useState } from 'react';
 import SmartCamera from './components/SmartCamera/container/SmartCamera';
 import { SmartCameraHandler } from './components/SmartCamera/types';
 import { RealtimeDetectionEngine } from '../../.';
-import { DetectionObject } from '../../dist/types';
 
 interface IProps {}
 
@@ -20,7 +18,6 @@ const Webcam: FunctionComponent<IProps> = () => {
 
       setTimeout(() => {
         engine.stop();
-        engine.dispose();
       }, 10000);
       setTimeout(() => {
         engine.start(console.log);
