@@ -1,7 +1,9 @@
+import { GraphModel } from '@tensorflow/tfjs-converter';
 import { FunctionComponent, useEffect, useRef, useState } from 'react';
 import SmartCamera from './components/SmartCamera/container/SmartCamera';
 import { SmartCameraHandler } from './components/SmartCamera/types';
 import { RealtimeDetectionEngine } from '../../.';
+import { DetectionObject } from '../../dist/types';
 
 interface IProps {}
 
