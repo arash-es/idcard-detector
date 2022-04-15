@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Loading from './components/LoadingProgress/LoadingProgress';
 import useLoadModel from './hooks/useLoadModel';
 import Webcam from './container/Webcam';
