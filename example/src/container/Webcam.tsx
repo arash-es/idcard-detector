@@ -1,14 +1,14 @@
 import { FunctionComponent, useEffect, useRef, useState } from 'react';
-import SmartCamera from './components/SmartCamera/container/SmartCamera';
-import { SmartCameraHandler } from './components/SmartCamera/types';
-import { RealtimeDetectionEngine } from '../../.';
-import { DetectionObject } from '../../dist/types';
-import pipeline from './utils/FP/pipeline';
-import drawRect from './helpers/drawRect';
-import drawTimer from './helpers/drawTimer';
-import drawError from './helpers/drawError';
-import getCardDimensions from './helpers/getCardDimensions';
-import Loading from './components/LoadingProgress/LoadingProgress';
+import SmartCamera from '../components/SmartCamera/container/SmartCamera';
+import { SmartCameraHandler } from '../components/SmartCamera/types';
+import { RealtimeDetectionEngine } from '../../../dist';
+import { DetectionObject } from '../../../dist/types';
+import pipeline from '../utils/FP/pipeline';
+import drawRect from '../helpers/drawRect';
+import drawTimer from '../helpers/drawTimer';
+import drawError from '../helpers/drawError';
+import getCardDimensions from '../helpers/getCardDimensions';
+import Loading from '../components/LoadingProgress/LoadingProgress';
 
 interface IProps {}
 
