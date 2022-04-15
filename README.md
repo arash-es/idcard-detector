@@ -1,3 +1,3 @@
-# idcard-detector-react
+# idcard-detector
 
-Iranian National Id Card Detector for React
+Iranian National Id Card Detector
