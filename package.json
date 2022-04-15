@@ -21,10 +21,9 @@
     "semantic-release": "semantic-release"
   },
   "peerDependencies": {
-    "@tensorflow/tfjs": "^3.11.0",
-    "@tensorflow/tfjs-converter": "^3.11.0",
-    "@tensorflow/tfjs-core": "^3.11.0",
-    "react": ">=16"
+    "@tensorflow/tfjs": ">=3.11.0",
+    "@tensorflow/tfjs-converter": ">=3.11.0",
+    "@tensorflow/tfjs-core": ">=3.11.0"
   },
   "husky": {
     "hooks": {
@@ -37,19 +36,19 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "@arashes/idcard-detector-react",
+  "name": "@arashes/idcard-detector",
   "author": "arashray",
   "publishConfig": {
     "access": "public"
   },
-  "module": "dist/idcard-detector-react.esm.js",
+  "module": "dist/idcard-detector.esm.js",
   "size-limit": [
     {
-      "path": "dist/idcard-detector-react.cjs.production.min.js",
+      "path": "dist/idcard-detector.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/idcard-detector-react.esm.js",
+      "path": "dist/idcard-detector.esm.js",
       "limit": "10 KB"
     }
   ],
@@ -58,12 +57,8 @@
     "@tensorflow/tfjs": "^3.11.0",
     "@tensorflow/tfjs-converter": "^3.11.0",
     "@tensorflow/tfjs-core": "^3.11.0",
-    "@types/react": "^18.0.3",
-    "@types/react-dom": "^18.0.0",
     "cz-conventional-changelog": "3.3.0",
     "husky": "^7.0.4",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
     "semantic-release": "^19.0.2",
     "size-limit": "^7.0.8",
     "tsdx": "^0.14.1",
@@ -72,7 +67,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/arashray/idcard-detector-react.git"
+    "url": "https://github.com/arashray/idcard-detector.git"
   },
   "config": {
     "commitizen": {
