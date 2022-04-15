@@ -5,23 +5,26 @@ import { SmartCameraHandler } from './components/SmartCamera/types';
 import { RealtimeDetectionEngine } from '../../.';
 import { DetectionObject } from '../../dist/types';
 
-interface IProps {
-  tfModel: GraphModel;
-}
+interface IProps {}
 
 const threshold = 0.9999;
 
-const Webcam: FunctionComponent<IProps> = ({ tfModel }) => {
+const Webcam: FunctionComponent<IProps> = () => {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const webcamRef = useRef<SmartCameraHandler>(null);
   useEffect(() => {
     if (webcamRef.current?.video) {
-      const engine = new RealtimeDetectionEngine(
-        tfModel,
-        webcamRef.current.video
-      );
+      const engine = new RealtimeDetectionEngine(webcamRef.current.video);
       engine.start(console.log);
+
+      setTimeout(() => {
+        engine.stop();
+        engine.dispose();
+      }, 10000);
+      setTimeout(() => {
+        engine.start(console.log);
+      }, 20000);
     }
   }, []);
   return (

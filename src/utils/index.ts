@@ -1,5 +1,4 @@
 import { loadGraphModel } from '@tensorflow/tfjs-converter';
-import { GraphModel } from '@tensorflow/tfjs-converter';
 import * as tf from '@tensorflow/tfjs';
 import {
   Model,
@@ -19,39 +18,47 @@ const prepareInput = async (target: DetectionTarget) => {
   return preparedImage;
 };
 
-export const detect = async (model: GraphModel, target: DetectionTarget) => {
-  try {
-    tf.engine().startScope();
-    const input = await prepareInput(target);
-    const predictions = (await model.executeAsync(input)) as tf.Tensor<
-      tf.Rank
-    >[];
-    const data: DetectionObject = {
-      bbox: ((await predictions[2].array()) as PredictionBoxes[])[0][0],
-      score: `${((await predictions[3].array()) as PredictionScores[])[0][0]}`,
-    };
-    return Promise.resolve(data);
-  } catch (e) {
-    return Promise.reject(e);
-  } finally {
-    tf.engine().endScope();
+const modelNotLoadedErrorText = 'model not loaded! load model first';
+
+export const detect = async (target: DetectionTarget) => {
+  if (modelCache) {
+    try {
+      tf.engine().startScope();
+      const input = await prepareInput(target);
+      const predictions = (await modelCache.executeAsync(input)) as tf.Tensor<
+        tf.Rank
+      >[];
+      const data: DetectionObject = {
+        bbox: ((await predictions[2].array()) as PredictionBoxes[])[0][0],
+        score: `${
+          ((await predictions[3].array()) as PredictionScores[])[0][0]
+        }`,
+      };
+      return Promise.resolve(data);
+    } catch (e) {
+      return Promise.reject(e);
+    } finally {
+      tf.engine().endScope();
+    }
   }
+  throw new Error(modelNotLoadedErrorText);
 };
 
 export class RealtimeDetectionEngine {
   private shouldStop: boolean;
-  constructor(private model: GraphModel, private video: HTMLVideoElement) {
+  constructor(private video: HTMLVideoElement) {
     this.shouldStop = true;
   }
 
   start(onDetect: OnDetectionEvent) {
+    console.log(tf.getBackend());
     if (this.shouldStop === false) {
       return;
     }
     this.shouldStop = false;
     const runDetection = async () => {
-      if (this.model && this.video?.readyState === 4) {
-        onDetect(await detect(this.model, this.video));
+      if (this.video?.readyState === 4) {
+        onDetect(await detect(this.video));
       }
       if (!this.shouldStop) {
         requestAnimationFrame(runDetection);
@@ -62,6 +69,10 @@ export class RealtimeDetectionEngine {
 
   stop() {
     this.shouldStop = true;
+  }
+
+  dispose() {
+    tf.backend().dispose();
   }
 }
 
