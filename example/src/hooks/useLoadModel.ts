@@ -1,11 +1,10 @@
-import { GraphModel } from '@tensorflow/tfjs-converter';
-import { useState } from 'react';
-import { loadModel as modelLoader } from '../utils';
+import { useEffect, useState } from 'react';
+import { Model, loadModel as modelLoader } from '../../../.';
 
-export const useLoadModel = (modelPath: string) => {
+const useLoadModel = (modelPath: string) => {
   const [isLoading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [model, setModel] = useState<GraphModel | null>(null);
+  const [model, setModel] = useState<Model>(null);
 
   const loadModel = async () => {
     try {
@@ -22,10 +21,15 @@ export const useLoadModel = (modelPath: string) => {
     }
   };
 
+  useEffect(() => {
+      loadModel()
+  }, [])
+
   return {
-    loadModel,
     isLoading,
     progress,
     model,
   };
 };
+
+export default useLoadModel;
