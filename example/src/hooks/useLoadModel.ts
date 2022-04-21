@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Model, loadModel as modelLoader } from '../../../.';
+import { Model, loadModel as modelLoader } from '@arashes/idcard-detector';
 
 const useLoadModel = (modelPath: string) => {
   const [isLoading, setLoading] = useState(false);
@@ -22,8 +22,8 @@ const useLoadModel = (modelPath: string) => {
   };
 
   useEffect(() => {
-      loadModel()
-  }, [])
+    loadModel();
+  }, []);
 
   return {
     isLoading,

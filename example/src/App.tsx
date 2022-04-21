@@ -1,7 +1,6 @@
-import { useEffect } from 'react';
 import Loading from './components/LoadingProgress/LoadingProgress';
 import useLoadModel from './hooks/useLoadModel';
-import Webcam from './Webcam';
+import Webcam from './container/Webcam';
 
 function App() {
   const { isLoading, progress } = useLoadModel(

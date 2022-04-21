@@ -18,12 +18,12 @@
     "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release --branches main"
   },
   "peerDependencies": {
-    "@tensorflow/tfjs": ">=3.11.0",
-    "@tensorflow/tfjs-converter": ">=3.11.0",
-    "@tensorflow/tfjs-core": ">=3.11.0"
+    "@tensorflow/tfjs": ">=3.15.0",
+    "@tensorflow/tfjs-converter": ">=3.15.0",
+    "@tensorflow/tfjs-core": ">=3.15.0"
   },
   "husky": {
     "hooks": {
@@ -52,11 +52,13 @@
       "limit": "10 KB"
     }
   ],
+  "dependencies": {
+    "@tensorflow/tfjs": "^3.15.0",
+    "@tensorflow/tfjs-converter": "^3.15.0",
+    "@tensorflow/tfjs-core": "^3.15.0"
+  },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^7.0.8",
-    "@tensorflow/tfjs": "^3.11.0",
-    "@tensorflow/tfjs-converter": "^3.11.0",
-    "@tensorflow/tfjs-core": "^3.11.0",
     "cz-conventional-changelog": "3.3.0",
     "husky": "^7.0.4",
     "semantic-release": "^19.0.2",

@@ -51,7 +51,6 @@ export class RealtimeDetectionEngine {
   }
 
   start(onDetect: OnDetectionEvent) {
-    console.log(tf.getBackend());
     if (this.shouldStop === false) {
       return;
     }
