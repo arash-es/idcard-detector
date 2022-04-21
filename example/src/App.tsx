@@ -7,7 +7,7 @@ function App() {
     '/models/national_card/model.json'
   );
   return (
-    <div className="bg-gray-800 w-screen h-screen grid place-items-center text-white">
+    <div className="bg-gray-800 w-screen h-screen overflow-hidden grid place-items-center text-white">
       {!isLoading ? <Webcam /> : <Loading message={`${progress}%`} />}
     </div>
   );

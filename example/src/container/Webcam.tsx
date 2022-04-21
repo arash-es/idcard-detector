@@ -183,8 +183,12 @@ const Webcam: FunctionComponent<IProps> = () => {
   );
 
   return (
-    <div className="w-144 h-108 rounded-2xl overflow-hidden relative">
-      <SmartCamera ref={webcamRef} mirrored={false} loading={cameraLoading} />
+    <div className="w-4/5 max-w-xl rounded-2xl overflow-hidden relative" style={{aspectRatio: '3/2'}}>
+      <SmartCamera ref={webcamRef} mirrored={false} audio={false} loading={cameraLoading} videoConstraints={{
+        aspectRatio: 1.5,
+        facingMode: {ideal: 'environment'},
+        width: 480,
+      }} />
       <canvas
         ref={canvasRef}
         className="w-full h-full absolute top-0 left-0 z-10"
